@@ -17,7 +17,7 @@ public class CPUService {
     private CPURepository cpuRepository;
 
     /**
-     * 解析CPU信息
+     * 解析CPU信息,封装为CPU实体对象
      *
      * @param system
      */

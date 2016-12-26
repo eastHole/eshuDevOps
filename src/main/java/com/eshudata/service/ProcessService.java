@@ -27,13 +27,22 @@ public class ProcessService {
         }
         // cpu
         JsonNode cpu = system.get("cpu");
-        DateTime startTime = new DateTime(cpu.get("start_time").asText());
+        DateTime cpuStartTime = new DateTime(cpu.get("start_time").asText());
+        Double cpuTotalPct = cpu.get("total").get("pct").asDouble();
         // fd
-        JsonNode fd = system.get("fd");
+        JsonNode limit = system.get("fd").get("limit");
+        long fdLimitHard = limit.get("hard").asLong();
+        long fdLimitSoft = limit.get("soft").asLong();
+        long fdOpen = system.get("fd").get("open").asLong();
         // memory
         JsonNode memory = system.get("memory");
+        long memorySize = memory.get("size").asLong();
+        long memoryShare = memory.get("share").asLong();
+        JsonNode rss = memory.get("rss");
+        long memoryRssBytes = rss.get("bytes").asLong();
+        double memoryRssPct = rss.get("pct").asDouble();
         // name
-        String processName = system.get("name").asText();
+        String name = system.get("name").asText();
         // pgid
         long pgid = system.get("pgid").asLong();
         // pid

@@ -42,7 +42,7 @@ public class MemoryService {
         long total = memory.get("total").asLong();
         // used
         JsonNode memoryUsed = memory.get("used");
-        long memoryUsedBytes = memoryUsed.get("bytes").asLong();
-        double momoryUsedPct = memoryUsed.get("pct").asDouble();
+        long usedBytes = memoryUsed.get("bytes").asLong();
+        double usedPct = memoryUsed.get("pct").asDouble();
     }
 }

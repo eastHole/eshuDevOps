@@ -29,9 +29,9 @@ public class FsstatService {
         long totalFiles = fsstat.get("total_files").asLong();
         // totalSize
         JsonNode totalSize = fsstat.get("total_size");
-        long free = totalSize.get("free").asLong();
-        long total = totalSize.get("total").asLong();
-        long used = totalSize.get("used").asLong();
+        long totalSizeFree = totalSize.get("free").asLong();
+        long totalSizeTotal = totalSize.get("total").asLong();
+        long totalSizeUsed = totalSize.get("used").asLong();
 
     }
 }

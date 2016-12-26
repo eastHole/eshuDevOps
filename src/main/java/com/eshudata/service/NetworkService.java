@@ -24,7 +24,7 @@ public class NetworkService {
     public void parseNetwork(JsonNode system) {
         JsonNode network = system.get("network");
         // name
-        String interfaceName = network.get("name").asText();
+        String name = network.get("name").asText();
         // in
         JsonNode in = network.get("in");
         long inBytes = in.get("bytes").asLong();

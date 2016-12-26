@@ -36,7 +36,7 @@ public class FilesystemService {
         long total = filesystem.get("total").asLong();
         // used
         JsonNode used = filesystem.get("used");
-        long bytes = used.get("bytes").asLong();
-        double pct = used.get("pct").asDouble();
+        long usedBytes = used.get("bytes").asLong();
+        double usedPct = used.get("pct").asDouble();
     }
 }

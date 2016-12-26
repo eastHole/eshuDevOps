@@ -37,15 +37,15 @@ public class MetricService {
     public void parse(String json) {
         try {
             JsonNode nodeTree = mapper.readTree(json);
-            JsonNode timeStamp = nodeTree.get("@timestamp");
+            JsonNode time = nodeTree.get("@timestamp");
             JsonNode beat = nodeTree.get("beat");
             JsonNode metricSet = nodeTree.get("metricset");
             JsonNode system = nodeTree.get("system");
 
             // 获取时间戳
-            DateTime dateTime = new DateTime(timeStamp.asText());
+            DateTime timeStamp = new DateTime(time.asText()).toDateTimeISO();
             // 获取主机名
-            String hostname = beat.get("hostname").asText();
+            String hostName = beat.get("hostname").asText();
             // 获取ip地址
             String ip = beat.get("name").asText();
             // 获取指标名称
