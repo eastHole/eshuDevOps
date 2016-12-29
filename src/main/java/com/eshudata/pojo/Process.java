@@ -1,14 +1,19 @@
 package com.eshudata.pojo;
 
+import com.eshudata.common.pojo.OSCommon;
 import org.joda.time.DateTime;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 /**
  *
  */
 @Document
-public class Process extends OSCommon{
+public class Process extends OSCommon {
 
+    @Id
+    public String id;
     // 进程名称
     private String name;
     // 启动进程所使用的cmd命令行
@@ -41,6 +46,14 @@ public class Process extends OSCommon{
     private String state;
     // 进程所属用户名
     private String userName;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -173,7 +186,8 @@ public class Process extends OSCommon{
     @Override
     public String toString() {
         return "Process{" +
-                "name='" + name + '\'' +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
                 ", cmdLine='" + cmdLine + '\'' +
                 ", cpuStartTime=" + cpuStartTime +
                 ", cpuTotalPct=" + cpuTotalPct +

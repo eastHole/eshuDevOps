@@ -1,13 +1,17 @@
 package com.eshudata.pojo;
 
+import com.eshudata.common.pojo.OSCommon;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  *
  */
 @Document
-public class Memory extends OSCommon{
+public class Memory extends OSCommon {
 
+    @Id
+    public String id;
     // 内存实际空闲大小
     private Long actualFree;
     // 内存实际使用大小
@@ -30,6 +34,14 @@ public class Memory extends OSCommon{
     private Long usedBytes;
     // 内存已使用百分比
     private Double usedPct;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public Long getActualFree() {
         return actualFree;
@@ -122,7 +134,8 @@ public class Memory extends OSCommon{
     @Override
     public String toString() {
         return "Memory{" +
-                "actualFree=" + actualFree +
+                "id='" + id + '\'' +
+                ", actualFree=" + actualFree +
                 ", actualUsedBytes=" + actualUsedBytes +
                 ", actualUsedPct=" + actualUsedPct +
                 ", free=" + free +

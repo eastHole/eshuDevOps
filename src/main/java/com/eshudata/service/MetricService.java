@@ -5,12 +5,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
 /**
  * 性能指标解析服务
  */
+@Service
 @EnableAutoConfiguration
 public class MetricService {
 
@@ -34,16 +36,15 @@ public class MetricService {
 
     private static ObjectMapper mapper = new ObjectMapper();
 
-    public void parse(String json) {
+    public void parseAndSave(String json) {
         try {
             JsonNode nodeTree = mapper.readTree(json);
             JsonNode time = nodeTree.get("@timestamp");
             JsonNode beat = nodeTree.get("beat");
             JsonNode metricSet = nodeTree.get("metricset");
             JsonNode system = nodeTree.get("system");
-
             // 获取时间戳
-            DateTime timeStamp = new DateTime(time.asText()).toDateTimeISO();
+            DateTime timeStamp = new DateTime(time.asText());
             // 获取主机名
             String hostName = beat.get("hostname").asText();
             // 获取ip地址
@@ -55,24 +56,24 @@ public class MetricService {
 
             switch (metricName) {
                 case "cpu":
-                    cpuService.parseCPU(system);
+                    cpuService.parseAndSaveCPU(system, ip, timeStamp, hostName, metricRtt);
                     break;
                 case "load":
                     break;
                 case "network":
-                    networkService.parseNetwork(system);
+                    networkService.parseAndSaveNetwork(system, ip, timeStamp, hostName, metricRtt);
                     break;
                 case "filesystem":
-                    filesystemService.parseFilesystem(system);
+                    filesystemService.parseAndSaveFilesystem(system, ip, timeStamp, hostName, metricRtt);
                     break;
                 case "fsstat":
-                    fsstatService.parseFsstat(system);
+                    fsstatService.parseAndSaveFsstat(system, ip, timeStamp, hostName, metricRtt);
                     break;
                 case "memory":
-                    memoryService.parseMemory(system);
+                    memoryService.parseAndSaveMemory(system, ip, timeStamp, hostName, metricRtt);
                     break;
                 case "process":
-                    processService.parseProcess(system);
+                    processService.parseAndSaveProcess(system, ip, timeStamp, hostName, metricRtt);
                     break;
                 default:
                     System.out.println("节点解析失败!");

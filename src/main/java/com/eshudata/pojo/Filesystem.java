@@ -1,17 +1,21 @@
 package com.eshudata.pojo;
 
+import com.eshudata.common.pojo.OSCommon;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  *
  */
 @Document
-public class Filesystem extends OSCommon{
+public class Filesystem extends OSCommon {
 
+    @Id
+    public String id;
     // 文件系统可用大小
     private Long available;
     // 设备名称
-    private Long deviceName;
+    private String deviceName;
     // 文件系统文件数目
     private Long files;
     // 文件系统空闲大小
@@ -19,13 +23,21 @@ public class Filesystem extends OSCommon{
     // 文件系统空闲文件数
     private Long freeFiles;
     // 文件系统挂载点
-    private Long mountPoint;
+    private String mountPoint;
     // 文件系统总大小
     private Long total;
     // 文件系统已用大小
     private Long usedBytes;
     // 文件系统已用百分比
-    private Long usedPct;
+    private Double usedPct;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public Long getAvailable() {
         return available;
@@ -35,11 +47,11 @@ public class Filesystem extends OSCommon{
         this.available = available;
     }
 
-    public Long getDeviceName() {
+    public String getDeviceName() {
         return deviceName;
     }
 
-    public void setDeviceName(Long deviceName) {
+    public void setDeviceName(String deviceName) {
         this.deviceName = deviceName;
     }
 
@@ -67,11 +79,11 @@ public class Filesystem extends OSCommon{
         this.freeFiles = freeFiles;
     }
 
-    public Long getMountPoint() {
+    public String getMountPoint() {
         return mountPoint;
     }
 
-    public void setMountPoint(Long mountPoint) {
+    public void setMountPoint(String mountPoint) {
         this.mountPoint = mountPoint;
     }
 
@@ -91,18 +103,19 @@ public class Filesystem extends OSCommon{
         this.usedBytes = usedBytes;
     }
 
-    public Long getUsedPct() {
+    public Double getUsedPct() {
         return usedPct;
     }
 
-    public void setUsedPct(Long usedPct) {
+    public void setUsedPct(Double usedPct) {
         this.usedPct = usedPct;
     }
 
     @Override
     public String toString() {
         return "Filesystem{" +
-                "available=" + available +
+                "id='" + id + '\'' +
+                ", available=" + available +
                 ", deviceName=" + deviceName +
                 ", files=" + files +
                 ", free=" + free +

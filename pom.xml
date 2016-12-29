@@ -27,17 +27,30 @@
 		<!-- Spring Boot-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency> <!-- exclude掉spring-boot的默认log配置 -->
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency> <!-- 引入log4j2依赖 -->
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-log4j2</artifactId>
+		</dependency>
+		<dependency>  <!-- 加上这个才能辨认到log4j2.yml文件 -->
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-yaml</artifactId>
 		</dependency>
 
 		<!-- Jackson -->
@@ -73,23 +86,6 @@
 			<artifactId>kafka_2.10</artifactId>
 			<version>LATEST</version>
 		</dependency>
-
-		<!-- Log4j -->
-		<!--<dependency>-->
-			<!--<groupId>org.apache.logging.log4j</groupId>-->
-			<!--<artifactId>log4j-api</artifactId>-->
-			<!--<version>2.7</version>-->
-		<!--</dependency>-->
-		<!--<dependency>-->
-			<!--<groupId>org.apache.logging.log4j</groupId>-->
-			<!--<artifactId>log4j-core</artifactId>-->
-			<!--<version>2.7</version>-->
-		<!--</dependency>-->
-		<!--<dependency>-->
-			<!--<groupId>org.slf4j</groupId>-->
-			<!--<artifactId>slf4j-log4j12</artifactId>-->
-			<!--<version>1.7.5</version>-->
-		<!--</dependency>-->
 	</dependencies>
 
 	<build>

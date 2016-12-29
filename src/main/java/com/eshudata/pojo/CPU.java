@@ -1,13 +1,17 @@
 package com.eshudata.pojo;
 
+import com.eshudata.common.pojo.OSCommon;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * CPU实体
  */
-@Document
-public class CPU extends OSCommon{
+@Document(collection = "cpu")
+public class CPU extends OSCommon {
 
+    @Id
+    public String id;
     // 空闲时间百分比
     private Double idlePct;
     // I/O请求挂起空闲时间百分比
@@ -24,6 +28,14 @@ public class CPU extends OSCommon{
     private Double systemPct;
     // 用户模式时间百分比
     private Double userPct;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public Double getIdlePct() {
         return idlePct;
@@ -92,7 +104,8 @@ public class CPU extends OSCommon{
     @Override
     public String toString() {
         return "CPU{" +
-                "idlePct=" + idlePct +
+                "id='" + id + '\'' +
+                ", idlePct=" + idlePct +
                 ", iowaitPct=" + iowaitPct +
                 ", irqPct=" + irqPct +
                 ", nicePct=" + nicePct +

@@ -1,13 +1,17 @@
 package com.eshudata.pojo;
 
+import com.eshudata.common.pojo.OSCommon;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  *
  */
 @Document
-public class Fsstat extends OSCommon{
+public class Fsstat extends OSCommon {
 
+    @Id
+    public String id;
     // 文件系统数目
     private Long count;
     // 文件系统总文件数
@@ -18,6 +22,14 @@ public class Fsstat extends OSCommon{
     private Long totalSizeTotal;
     // 文件系统已用大小
     private Long totalSizeUsed;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public Long getCount() {
         return count;
@@ -62,7 +74,8 @@ public class Fsstat extends OSCommon{
     @Override
     public String toString() {
         return "Fsstat{" +
-                "count=" + count +
+                "id='" + id + '\'' +
+                ", count=" + count +
                 ", totalFiles=" + totalFiles +
                 ", totalSizeFree=" + totalSizeFree +
                 ", totalSizeTotal=" + totalSizeTotal +

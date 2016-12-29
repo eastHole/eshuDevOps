@@ -1,13 +1,17 @@
 package com.eshudata.pojo;
 
+import com.eshudata.common.pojo.OSCommon;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  *
  */
 @Document
-public class Network extends OSCommon{
+public class Network extends OSCommon {
 
+    @Id
+    public String id;
     // 网络接口名称
     private String name;
     // 入口网络流量
@@ -26,6 +30,14 @@ public class Network extends OSCommon{
     private Long outErrors;
     // 网络报文数
     private Long outPackets;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -102,7 +114,8 @@ public class Network extends OSCommon{
     @Override
     public String toString() {
         return "Network{" +
-                "name='" + name + '\'' +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
                 ", inBytes=" + inBytes +
                 ", inDropped=" + inDropped +
                 ", inErrors=" + inErrors +
