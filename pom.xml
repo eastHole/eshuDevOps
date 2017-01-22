@@ -13,8 +13,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>LATEST</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<version>2.0.0.BUILD-SNAPSHOT</version>
 	</parent>
 
 	<properties>
@@ -31,27 +30,44 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency> <!-- exclude掉spring-boot的默认log配置 -->
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-logging</artifactId>
-				</exclusion>
-			</exclusions>
+
+		<!-- Spring Kafka -->
+		<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka</artifactId>
+			<version>1.1.1.RELEASE</version>
 		</dependency>
-		<dependency> <!-- 引入log4j2依赖 -->
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-log4j2</artifactId>
-		</dependency>
-		<dependency>  <!-- 加上这个才能辨认到log4j2.yml文件 -->
-			<groupId>com.fasterxml.jackson.dataformat</groupId>
-			<artifactId>jackson-dataformat-yaml</artifactId>
-		</dependency>
+
+		<!--<dependency>-->
+			<!--<groupId>org.mongodb</groupId>-->
+			<!--<artifactId>mongodb-driver</artifactId>-->
+			<!--<version>3.4.0</version>-->
+		<!--</dependency>-->
+		<!--<dependency> &lt;!&ndash; exclude掉spring-boot的默认log配置 &ndash;&gt;-->
+			<!--<groupId>org.springframework.boot</groupId>-->
+			<!--<artifactId>spring-boot-starter</artifactId>-->
+			<!--<exclusions>-->
+				<!--<exclusion>-->
+					<!--<groupId>org.springframework.boot</groupId>-->
+					<!--<artifactId>spring-boot-starter-logging</artifactId>-->
+				<!--</exclusion>-->
+			<!--</exclusions>-->
+		<!--</dependency>-->
+		<!--<dependency> &lt;!&ndash; 引入log4j2依赖 &ndash;&gt;-->
+			<!--<groupId>org.springframework.boot</groupId>-->
+			<!--<artifactId>spring-boot-starter-log4j2</artifactId>-->
+		<!--</dependency>-->
+		<!--<dependency>  &lt;!&ndash; 加上这个才能辨认到log4j2.yml文件 &ndash;&gt;-->
+			<!--<groupId>com.fasterxml.jackson.dataformat</groupId>-->
+			<!--<artifactId>jackson-dataformat-yaml</artifactId>-->
+		<!--</dependency>-->
 
 		<!-- Jackson -->
 		<dependency>
@@ -75,18 +91,30 @@
 		</dependency>
 
 		<!-- Kafka -->
-		<dependency>
-			<groupId>org.apache.kafka</groupId>
-			<artifactId>kafka-clients</artifactId>
-			<version>0.10.1.0</version>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>org.apache.kafka</groupId>-->
+			<!--<artifactId>kafka-clients</artifactId>-->
+			<!--<version>0.10.1.0</version>-->
+		<!--</dependency>-->
 
-		<dependency>
-			<groupId>org.apache.kafka</groupId>
-			<artifactId>kafka_2.10</artifactId>
-			<version>LATEST</version>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>org.apache.kafka</groupId>-->
+			<!--<artifactId>kafka_2.10</artifactId>-->
+			<!--<version>LATEST</version>-->
+		<!--</dependency>-->
+
 	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>spring-snapshots</id>
+			<name>Spring Snapshots</name>
+			<url>https://repo.spring.io/libs-snapshot</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 
 	<build>
 		<plugins>

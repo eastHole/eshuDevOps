@@ -2,10 +2,9 @@ package com.eshudata.service;
 
 import com.eshudata.pojo.Memory;
 import com.eshudata.repository.MemoryRepository;
-import com.eshudata.repository.ProcessRepository;
 import com.fasterxml.jackson.databind.JsonNode;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
